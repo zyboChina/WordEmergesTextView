@@ -22,12 +22,12 @@ import java.util.ArrayList;
 class WordEmergesTextView extends TextView {
     private SpannableString mFadeyText;
     private CharSequence mText;
-    ArrayList<Float> alphaList;
+    ArrayList<Float> alphaList; // the list for recording the original transparency
     float value = 0;
     FadeyLetterSpan[] letters;
     boolean isFirst;
 
-    Handler handler = new Handler() {
+    Handler handler = new Handler() { //for change the text alpha together
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0 && value <= 1) {
@@ -63,6 +63,10 @@ class WordEmergesTextView extends TextView {
         isFirst = true;
     }
 
+    /*
+    * for initialization the alpha for each text in textview
+    *
+    * */
     @Override
     public void setText(CharSequence text, BufferType type) {
         mText = text;
@@ -116,7 +120,7 @@ class WordEmergesTextView extends TextView {
     }
 
     public class FadeyLetterSpan extends CharacterStyle implements UpdateAppearance {
-        private float mAlpha = (float) (Math.random() * 0.2);
+        private float mAlpha = (float) (Math.random() * 0.2);// initialize alpha for each text in textview,you may change here to init your alpha
 
         public void setAlpha(float alpha) {
             mAlpha = Math.max(Math.min(alpha, 1.0f), 0.0f);
