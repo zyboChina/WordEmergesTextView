@@ -112,7 +112,7 @@ class WordEmergesTextView extends TextView {
 
     private void refreshText(FadeyLetterSpan[] letters, float value) {
         for (int i = 0; i < letters.length; i++) {
-            if (alphaList.size() > 0) {
+            if (alphaList.size() > 0 && i < alphaList.size()) {
                 letters[i].setAlpha(alphaList.get(i) + value);
             }
         }
@@ -120,7 +120,7 @@ class WordEmergesTextView extends TextView {
     }
 
     public class FadeyLetterSpan extends CharacterStyle implements UpdateAppearance {
-        private float mAlpha = (float) (Math.random() * 0.2);// initialize alpha for each text in textview,you may change here to init your alpha
+        private float mAlpha = (float) (Math.random() * 0.4);// initialize alpha for each text in textview,you may change here to init your alpha
 
         public void setAlpha(float alpha) {
             mAlpha = Math.max(Math.min(alpha, 1.0f), 0.0f);
